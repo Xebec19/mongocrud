@@ -2,7 +2,7 @@ import JwtStrategy from 'passport-jwt'
 import ExtractJwt from 'passport-jwt'
 import mongoose from 'mongoose'
 
-const PersonSchema = new Schema({
+const PersonSchema = new mongoose.Schema({
 	name: {
 		type: String,
 		required: true
@@ -10,7 +10,7 @@ const PersonSchema = new Schema({
 	email: {
 		type: String,
 		required: true
-	}
+	},
 	password: {
 		type: String,
 		required: true

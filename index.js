@@ -2,7 +2,8 @@ import express from 'express'
 import mongoose from 'mongoose'
 import auth from './routes/api/auth.js'
 import {URL} from './secret/myURL.js'
-
+import passport from 'passport'
+import './strategies/jwtStrategy.js'
 const port = process.env.PORT || 3000  //PORT NUMBER
 const app = express();
 
@@ -17,12 +18,18 @@ mongoose.connect(URL, {
 	console.log('MongoDB connected')
 })
 .catch(err => {
-	console.log(`!!! An error occurred while connecting mongodb ${err} !!!`)
+	console.log(`!!! An error occurred while connecting mongodb !!! ${err} !!!`)
 })
 
-app.use(express.urlencoded({extended:false}));  //alternative for body-parsar
+//alternative for body-parsar
+app.use(express.urlencoded({extended:false}));  
 app.use(express.json());
 
+//Passport middleware
+app.use(passport.initialize());
+
+
+//Routes
 app.use("/api/auth",auth);
 
 app.listen(port, () => console.log(`App is running at ${port}`));

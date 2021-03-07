@@ -1,5 +1,3 @@
-import JwtStrategy from 'passport-jwt'
-import ExtractJwt from 'passport-jwt'
 import mongoose from 'mongoose'
 
 const PersonSchema = new mongoose.Schema({

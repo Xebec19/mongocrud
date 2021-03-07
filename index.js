@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import auth from './routes/api/auth.js'
+import profile from './routes/api/profile.js'
 import {URL} from './secret/myURL.js'
 import passport from 'passport'
 import './strategies/jwtStrategy.js'
@@ -31,5 +32,6 @@ app.use(passport.initialize());
 
 //Routes
 app.use("/api/auth",auth);
+app.use("/user",profile);
 
 app.listen(port, () => console.log(`App is running at ${port}`));

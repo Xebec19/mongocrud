@@ -28,7 +28,7 @@ router.post(
   	try{
 	  bcrypt.hash(password, 8, (err, hash) => {
       if(err) throw err;
-	  
+	    res.status(200).json(hash);
 	});
   	}
   	catch(err){

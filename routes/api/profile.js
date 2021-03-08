@@ -87,8 +87,50 @@ route : /user/read/record
 desc : for creating records
 access : PRIVATE
 */
-/*router.patch(
-  "/update"
-	)*/
+router.patch(
+  "/update/record/:id",
+  passport.authenticate("jwt",{session:false}),
+  (req,res) => {
+  	console.log(req.params.id);
+  	Tasks.findOneAndUpdate(
+      {_id: req.params.id},
+       {$set: req.body}
+       ,{new: true})
+  	.then(profile => {
+  		res
+  		.status(200)
+  		.json(profile)
+  	})
+  	.catch(err => {
+  		res
+  		.status(400)
+  		.json({error:"Error occured while updating record",err})
+  	})
+  }
+	)  //patch ends here
+
+/*
+type : DELETE
+route : /user/delete/record/:id
+desc : for creating records
+access : PRIVATE
+*/
+router.delete(
+	"/delete/record/:id",
+	passport.authenticate("jwt",{session:false}),
+	(req,res) => {
+		Tasks.findOneAndDelete({_id: req.params.id})
+			.then(profile => {
+				res
+				.status(200)
+				.json({message:"success"})
+			})
+			.catch(err => {
+				res
+				.status(400)
+				.json({error:"An error occurred",err})
+			})
+	}
+)  //delete ends here
 
 export default router;

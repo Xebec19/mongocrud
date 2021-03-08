@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import mongoose from 'mongoose'
 import auth from './routes/api/auth.js'
 import profile from './routes/api/profile.js'
@@ -21,6 +22,8 @@ mongoose.connect(URL, {
 .catch(err => {
 	console.log(`!!! An error occurred while connecting mongodb !!! ${err} !!!`)
 })
+
+app.use(cors())  //set up cors
 
 //alternative for body-parsar
 app.use(express.urlencoded({extended:false}));  

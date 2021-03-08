@@ -39,7 +39,6 @@ router
     	organization: organization,
     	ratings: ratings
     });
-    console.log(newRecord);
     newRecord
     .save()
     .then(record => {
@@ -91,7 +90,6 @@ router.patch(
   "/update/record/:id",
   passport.authenticate("jwt",{session:false}),
   (req,res) => {
-  	console.log(req.params.id);
   	Tasks.findOneAndUpdate(
       {_id: req.params.id},
        {$set: req.body}

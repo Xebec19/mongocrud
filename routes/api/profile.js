@@ -65,7 +65,7 @@ router.get(
   passport.authenticate("jwt",{session:false}),
   (req,res) => {
   	Tasks
-  	.findOne({owner:req.user.id})
+  	.find({owner:req.user.id})
   	.then(tasks => {
   		if(tasks){
   		res
@@ -73,8 +73,7 @@ router.get(
   		.json(tasks)
   	} else {
   		res
-  		.status(404)
-  		.json({message:"No tasks present"})
+  		.json('')
   	}
   	})
   }

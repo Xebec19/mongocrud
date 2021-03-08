@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import Tasks from './Tasks.js'
 
 const PersonSchema = new mongoose.Schema({
 	name: {
@@ -7,7 +8,8 @@ const PersonSchema = new mongoose.Schema({
 	},
 	email: {
 		type: String,
-		required: true
+		required: true,
+		unique: true
 	},
 	password: {
 		type: String,
@@ -18,6 +20,7 @@ const PersonSchema = new mongoose.Schema({
 		default: Date.now
 	}
 });
+
 
 const Person = mongoose.model("myPerson",PersonSchema);
 export default Person;

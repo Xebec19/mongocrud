@@ -32,6 +32,7 @@ router
   (req,res) => {
   	const {name,date,phone,organization,ratings} = req.body;
     const newRecord = new Tasks({
+    	owner: req.user.id,
     	name: name,
     	date: date,
     	phone: phone,
@@ -53,5 +54,41 @@ router
     })
     }
     )
+
+/*
+type : GET
+route : /user/read/record
+desc : for creating records
+access : PRIVATE
+*/
+router.get(
+  "/read/record",
+  passport.authenticate("jwt",{session:false}),
+  (req,res) => {
+  	Tasks
+  	.findOne({owner:req.user.id})
+  	.then(tasks => {
+  		if(tasks){
+  		res
+  		.status(200)
+  		.json(tasks)
+  	} else {
+  		res
+  		.status(404)
+  		.json({message:"No tasks present"})
+  	}
+  	})
+  }
+	)
+
+/*
+type : PATCH
+route : /user/read/record
+desc : for creating records
+access : PRIVATE
+*/
+/*router.patch(
+  "/update"
+	)*/
 
 export default router;

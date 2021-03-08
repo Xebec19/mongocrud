@@ -54,7 +54,7 @@ router.post(
       .catch(err => {
         res
         .status(404)
-        .json({error:"!!!Error occured while registering new user!!!"})
+        .json({error:"!!!Error occured while registering new user!!! ",err})
       })  //newPerson ends here
       });  //bcrypt ends here
     }  //else ends here

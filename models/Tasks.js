@@ -1,7 +1,14 @@
+import pkg from 'mongodb'
+const {ObjectId} = pkg
 import mongoose from 'mongoose'
 import Person from './Person.js'
 
 const TaskSchema = new mongoose.Schema({
+	owner: {
+		type: mongoose.Schema.Types.ObjectId,
+		required: true,
+		ref: "myPerson"
+	},
 	name: {
 		type: String,
 		required: true
@@ -23,11 +30,6 @@ const TaskSchema = new mongoose.Schema({
 		max: 5,
 		min: 0,
 		required: true
-	},
-	owner: {
-		type: mongoose.Schema.Types.ObjectId,
-		required: true,
-		ref: "Person"
 	}
 	
 })

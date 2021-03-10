@@ -81,8 +81,8 @@ router.get(
 
 /*
 type : PATCH
-route : /user/read/record
-desc : for creating records
+route : /user/update/record/:id
+desc : for updating records
 access : PRIVATE
 */
 router.patch(

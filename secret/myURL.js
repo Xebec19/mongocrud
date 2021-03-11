@@ -1,2 +1,2 @@
-export const secret = 'Fuegoleon';
-export const URL = 'mongodb+srv://admin:admin123@mongocluster.ilybj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+export const secret = //Your secret goes here;
+export const URL = //Your URL for mongoDB database goes here;
